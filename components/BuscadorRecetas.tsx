@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import RecetaCard from './RecetaCard'
 
 interface Receta {
@@ -36,13 +37,14 @@ export default function BuscadorRecetas({ recetas }: BuscadorRecetasProps) {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {recetasFiltradas.map((receta) => (
-            <RecetaCard
-              key={receta.id}
-              id={receta.id}
-              nombre={receta.nombre}
-              imagen={receta.imagen}
-              tiempoMinutos={receta.tiempoMinutos}
-            />
+            <Link key={receta.id} href={`/recetas/${receta.id}`}>
+              <RecetaCard
+                id={receta.id}
+                nombre={receta.nombre}
+                imagen={receta.imagen}
+                tiempoMinutos={receta.tiempoMinutos}
+              />
+            </Link>
           ))}
         </div>
       )}
