@@ -1,18 +1,67 @@
-import { login } from '@/app/actions/auth'
+'use client'
 
-export default function LoginPage({ searchParams }: { searchParams: { error?: string } }) {
+import { useState } from 'react'
+import { iniciarSesion } from '@/app/actions/auth'
+
+export default function LoginPage() {
+  const [error, setError] = useState<string | null>(null)
+  const [cargando, setCargando] = useState(false)
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setCargando(true)
+    setError(null)
+
+    const formData = new FormData(e.currentTarget)
+    const resultado = await iniciarSesion(formData)
+
+    if (resultado?.error) {
+      setError(resultado.error)
+      setCargando(false)
+    }
+  }
+
   return (
-    <div className="max-w-sm mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Ingresar</h1>
-      {searchParams.error && <p className="text-red-600 mb-4">{searchParams.error}</p>}
-      <form action={login} className="flex flex-col gap-3">
-        <input name="email" type="email" placeholder="Correo" required className="border p-2 rounded" />
-        <input name="password" type="password" placeholder="Contraseña" required className="border p-2 rounded" />
-        <button className="bg-blue-600 text-white py-2 rounded">Ingresar</button>
+    <div className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">
+        Iniciar sesión
+      </h1>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Correo electrónico
+          </label>
+          <input
+            type="email"
+            name="email"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Contraseña
+          </label>
+          <input
+            type="password"
+            name="password"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
+
+        {error && <p className="text-red-600 text-sm">{error}</p>}
+
+        <button
+          type="submit"
+          disabled={cargando}
+          className="w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 disabled:opacity-50"
+        >
+          {cargando ? 'Ingresando...' : 'Iniciar sesión'}
+        </button>
       </form>
-      <p className="text-sm text-slate-500 mt-4">
-        ¿No tienes cuenta? <a href="/register" className="text-blue-600 underline">Regístrate</a>
-      </p>
     </div>
   )
 }
