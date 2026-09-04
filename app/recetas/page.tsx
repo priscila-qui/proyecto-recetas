@@ -1,4 +1,4 @@
-import RecetaCard from '@/components/RecetaCard'
+import BuscadorRecetas from '@/components/BuscadorRecetas'
 
 const recetasEjemplo = [
   {
@@ -18,8 +18,7 @@ const recetasEjemplo = [
   {
     id: '3',
     nombre: 'Ensalada César',
-    imagen:
-      'https://www.themealdb.com/images/media/meals/1550440197.jpg',
+    imagen: 'https://www.themealdb.com/images/media/meals/1550440197.jpg',
     tiempoMinutos: 15,
   },
 ]
@@ -30,17 +29,7 @@ export default function RecetasPage() {
       <h1 className="text-3xl font-bold text-gray-900 mb-8">
         Todas las recetas
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {recetasEjemplo.map((receta) => (
-          <RecetaCard
-            key={receta.id}
-            id={receta.id}
-            nombre={receta.nombre}
-            imagen={receta.imagen}
-            tiempoMinutos={receta.tiempoMinutos}
-          />
-        ))}
-      </div>
+      <BuscadorRecetas recetas={recetasEjemplo} />
     </div>
   )
 }
