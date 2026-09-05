@@ -10,13 +10,14 @@ La aplicación cuenta con autenticación, roles de usuario, operaciones CRUD, co
 
 🔗 Aplicación desplegada en Vercel:
 
-PENDIENTE — aquí colocaremos la URL después del deploy
+https://proyecto-recetas-wheat.vercel.app/
 
 📸 Capturas de pantalla
 Página principal
 
 
 Listado de recetas
+
 
 Panel de control del chef
 
@@ -285,9 +286,7 @@ El proyecto quedará desplegado utilizando Vercel , conectado directamente con e
 
 Una vez realizado el despliegue, aquí colocaremos la URL:
 
-https://proyecto-recetas.vercel.app
-
-
+https://proyecto-recetas-wheat.vercel.app/
 
 
 🧪 Credenciales de prueba
