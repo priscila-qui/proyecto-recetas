@@ -67,10 +67,17 @@ export default async function DashboardPage() {
   }
 
   // Rol lector
-  const { data: favoritos } = await supabase
-    .from('favoritos')
-    .select('*, recetas(*)')
-    .eq('usuario_id', user!.id)
+   const { data: favoritos } = await supabase
+  .from('favoritos')
+  .select('*, recetas(*)')
+  .eq('usuario_id', user!.id)
+
+   type Favorito = {
+  id: string
+  recetas?: {
+    nombre: string
+     }
+   }
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
@@ -85,7 +92,7 @@ export default async function DashboardPage() {
         </p>
       ) : (
         <div className="space-y-3">
-          {favoritos.map((fav: any) => (
+          {favoritos.map((fav: Favorito) => (
             <div
               key={fav.id}
               className="border border-gray-200 rounded-lg p-4"

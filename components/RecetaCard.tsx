@@ -6,7 +6,7 @@ interface RecetaCardProps {
 }
 
 export default function RecetaCard({
-  id,
+  
   nombre,
   imagen,
   tiempoMinutos,
