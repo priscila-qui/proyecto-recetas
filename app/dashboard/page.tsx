@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import { eliminarReceta } from '@/app/actions/recetas'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -38,16 +39,27 @@ export default async function DashboardPage() {
           </p>
         ) : (
           <div className="space-y-3">
-            {misRecetas.map((receta) => (
-              <div
-                key={receta.id}
-                className="border border-gray-200 rounded-lg p-4"
-              >
-                <h3 className="font-semibold text-gray-900">
-                  {receta.nombre}
-                </h3>
-              </div>
-            ))}
+           {misRecetas.map((receta) => (
+  <div
+    key={receta.id}
+    className="border border-gray-200 rounded-lg p-4 flex items-center justify-between"
+  >
+                 <h3 className="font-semibold text-gray-900">{receta.nombre}</h3>
+             <form
+                  action={async () => {
+                  'use server'
+            await eliminarReceta(receta.id)
+              }}
+    >
+        <button
+        type="submit"
+        className="text-sm text-red-600 hover:underline"
+        >
+          Eliminar
+           </button>
+         </form>
+          </div>
+             ))}
           </div>
         )}
       </div>
