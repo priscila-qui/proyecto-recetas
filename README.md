@@ -21,7 +21,7 @@ Listado de recetas
 
 Panel de control del chef
 
-Las imágenes serán reemplazadas por las capturas reales de la aplicación.
+
 
 🛠️ Pila tecnológica
 
